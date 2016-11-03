@@ -11,8 +11,9 @@ wordpress_sites:
             db_name: "site1_db"
             db_user: "site1"
             db_pass: "password"
-            theme_name: "site1theme"
-            theme_source: "salt://_wp_repo/themes/site1/site1theme.tar.gz"
+            theme:
+                theme_name: "site1theme"
+                theme_source: "salt://_wp_repo/themes/site1/site1theme.tar.gz"
             user: "www-data"
             group: "www-data"
             # Get the below salts from: https://api.wordpress.org/secret-key/1.1/salt/
