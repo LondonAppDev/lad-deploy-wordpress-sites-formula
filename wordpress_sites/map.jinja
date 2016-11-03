@@ -1,0 +1,10 @@
+{% set wordpress_sites = salt['grains.filter_by']({
+    'default': {
+        'wordpress_source': 'https://wordpress.org/wordpress-4.6.1.tar.gz',
+        'wordpress_source_hash': 'md5=ca0b978fd702eac033830ca2d0784b79',
+        'sites_base_dir': '/usr/local/webapps',
+        'db_connection_user': 'root',
+        'db_connection_user_pass': 'rootpass',
+        'sites': {},
+    },
+}, merge=salt['pillar.get']('wordpress_sites')) %}

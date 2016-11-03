@@ -1,0 +1,56 @@
+wordpress_sites:
+    wordpress_source: "https://wordpress.org/wordpress-4.6.1.tar.gz"
+    wordpress_source_hash: "md5=ca0b978fd702eac033830ca2d0784b79"
+    sites_base_dir: "/usr/local/webapps"
+    db_connection_user: "root"
+    db_connection_user_pass: "rootpass"
+    sites:
+        site1:
+            site_domain: "site1.com"
+            db_host: "localhost"
+            db_name: "site1_db"
+            db_user: "site1"
+            db_pass: "password"
+            theme_name: "site1theme"
+            theme_source: "salt://_wp_repo/themes/site1/site1theme.tar.gz"
+            user: "www-data"
+            group: "www-data"
+            # Get the below salts from: https://api.wordpress.org/secret-key/1.1/salt/
+            wp_auth_keys_and_salts: |
+                define('AUTH_KEY',         'K`0}fXo,JrwKMT72YL(5)gZIy(v` OeFl@R4RpC+ I U;XFf9zYr-1*L?]Neux0d');
+                define('SECURE_AUTH_KEY',  '{2H5Jbw11N|O(86%FjHTC+?5y[2oAup|Ne-fAEcc^<mJ{OOO@&u,P:+ac@]2H3~{');
+                define('LOGGED_IN_KEY',    '2P6rLgn2X!1xwx}2e;|:Oks,nEW?y |+9n(wx5nEtLHNKB%GgHbev*>TUq=tv,+o');
+                define('NONCE_KEY',        'Zudt:=^3 y|T.hhTf[{.2<d_h&Z{(IP}0K9.lD!r$miOJ3w~k19_d]MpP5`}Hy:J');
+                define('AUTH_SALT',        '@jwJb(Y)FQZbw/N)auw@+NaEB@X-kHt9z8bTMtjBiwm2+;9YQ=_2d^hoKUL=!iVm');
+                define('SECURE_AUTH_SALT', 'D-1MsoJOG<qx}3jjv|PO1eTB[B(={ lzU{s-uZFaIbST_?I+p6=vU;;<8{u2Xf2_');
+                define('LOGGED_IN_SALT',   '?p0O68-Hgc{VZl.+%=NO*4Kxz ]g}Df.)=j&,Ac:?fTaJW0o6N9jJxb=lgo>01At');
+                define('NONCE_SALT',       ':72g-~Rw9POr6W+O]j/:%>Iy<g|-1>kBwQT+iJ`3#WTWw]!k+Yyt,0;drf~YxhwT');
+            # Remove the below to exclude ssl.
+            https:
+                ssl_cert: |
+                    -----BEGIN CERTIFICATE-----
+                    XXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXX
+                    -----END CERTIFICATE-----
+                ssl_key: |
+                    -----BEGIN RSA PRIVATE KEY-----
+                    XXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXX
+                    -----END RSA PRIVATE KEY-----
+
+        site1:
+            site_domain: "site2.com"
+            db_host: "localhost"
+            db_name: "site2_db"
+            db_user: "site2"
+            db_pass: "password"
+            user: "www-data"
+            group: "www-data"
+            # Get the below salts from: https://api.wordpress.org/secret-key/1.1/salt/
+            wp_auth_keys_and_salts: |
+                define('AUTH_KEY',         'K`0}fXo,JrwKMT72YL(5)gZIy(v` OeFl@R4RpC+ I U;XFf9zYr-1*L?]Neux0d');
+                define('SECURE_AUTH_KEY',  '{2H5Jbw11N|O(86%FjHTC+?5y[2oAup|Ne-fAEcc^<mJ{OOO@&u,P:+ac@]2H3~{');
+                define('LOGGED_IN_KEY',    '2P6rLgn2X!1xwx}2e;|:Oks,nEW?y |+9n(wx5nEtLHNKB%GgHbev*>TUq=tv,+o');
+                define('NONCE_KEY',        'Zudt:=^3 y|T.hhTf[{.2<d_h&Z{(IP}0K9.lD!r$miOJ3w~k19_d]MpP5`}Hy:J');
+                define('AUTH_SALT',        '@jwJb(Y)FQZbw/N)auw@+NaEB@X-kHt9z8bTMtjBiwm2+;9YQ=_2d^hoKUL=!iVm');
+                define('SECURE_AUTH_SALT', 'D-1MsoJOG<qx}3jjv|PO1eTB[B(={ lzU{s-uZFaIbST_?I+p6=vU;;<8{u2Xf2_');
+                define('LOGGED_IN_SALT',   '?p0O68-Hgc{VZl.+%=NO*4Kxz ]g}Df.)=j&,Ac:?fTaJW0o6N9jJxb=lgo>01At');
+                define('NONCE_SALT',       ':72g-~Rw9POr6W+O]j/:%>Iy<g|-1>kBwQT+iJ`3#WTWw]!k+Yyt,0;drf~YxhwT');
