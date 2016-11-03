@@ -14,14 +14,16 @@
         - if_missing: "{{ wordpress_sites.sites_base_dir }}/{{ site }}/wordpress"
 
 # Theme File
+{% if 'theme' in args %}
 wordpress_sites_{{ site }}_copy_theme:
     archive.extracted:
-        - name: "{{ wordpress_sites.sites_base_dir }}/{{ site }}/wordpress/wp-content/themes/{{ args['theme_name'] }}/"
-        - source: "{{ args["theme_source"] }}"
+        - name: "{{ wordpress_sites.sites_base_dir }}/{{ site }}/wordpress/wp-content/themes/{{ args['theme']['theme_name'] }}/"
+        - source: "{{ args["theme"]["theme_source"] }}"
         - archive_format: tar
         - tar_options: zxvf
         - user: "{{ args['user'] }}"
         - group: "{{ args['group'] }}"
+{% endif %}
 
 # WordPress Config
 {{ wordpress_sites.sites_base_dir }}/{{ site }}/wordpress/wp-config.php:
