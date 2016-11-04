@@ -58,6 +58,14 @@ wordpress_sites_{{ site }}_mysql_db_user:
         - name: "{{ args['db_user'] }}"
         - password: "{{ args['db_pass'] }}"
         - host: "{{ args['db_host'] }}"
+wordpress_sites_{{ site }}_mysql_db_perms:
+    mysql_grants.present:
+        - connection_user: "{{ wordpress_sites.db_connection_user }}"
+        - connection_pass: "{{ wordpress_sites.db_connection_user_pass }}"
+        - connection_charset: utf8
+        - grant: all privileges
+        - database: '{{ args["db_name"] }}'.*
+        - user: "{{ args['db_user'] }}"
 
 #NGINX Site Config
 /etc/nginx/sites-available/{{ args['site_domain'] }}.conf:
