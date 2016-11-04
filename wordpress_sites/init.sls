@@ -1,5 +1,9 @@
 {% from "wordpress_sites/map.jinja" import wordpress_sites with context %}
 
+include:
+    - wordpress_sites.required_packages
+
+
 {% for site, args in wordpress_sites.sites.items() %}
 
 # WordPress Files
