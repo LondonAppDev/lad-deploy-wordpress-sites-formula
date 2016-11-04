@@ -64,7 +64,7 @@ wordpress_sites_{{ site }}_mysql_db_perms:
         - connection_pass: "{{ wordpress_sites.db_connection_user_pass }}"
         - connection_charset: utf8
         - grant: all privileges
-        - database: '{{ args["db_name"] }}'.*
+        - database: '{{ args["db_name"] }}.*'
         - user: "{{ args['db_user'] }}"
 
 #NGINX Site Config
