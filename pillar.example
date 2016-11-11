@@ -37,7 +37,7 @@ wordpress_sites:
                     XXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXX
                     -----END RSA PRIVATE KEY-----
 
-        site1:
+        site2:
             site_domain: "site2.com"
             db_host: "localhost"
             db_name: "site2_db"
