@@ -19,14 +19,32 @@ include:
 
 # Theme File
 {% if 'theme' in args %}
-wordpress_sites_{{ site }}_copy_theme:
-    archive.extracted:
-        - name: "{{ wordpress_sites.sites_base_dir }}/{{ site }}/wordpress/wp-content/themes/{{ args['theme']['theme_name'] }}/"
-        - source: "{{ args["theme"]["theme_source"] }}"
-        - archive_format: tar
-        - tar_options: zxvf
-        - user: "{{ args['user'] }}"
-        - group: "{{ args['group'] }}"
+
+# node_install_latest_nodejs:
+#     cmd.run:
+#         - name: |
+#             curl -sL https://deb.nodesource.com/setup_6.x | sudo -E bash -
+#             sudo apt-get update
+#             sudo apt-get install -y nodejs
+
+{{ wordpress_sites.sites_base_dir }}/{{ site }}/wordpress/wp-content/themes/{{ args['theme']['theme_name'] }}/:
+  rsync.synchronized:
+    - source: "{{ args["theme"]["theme_source"] }}"
+    - force: True
+    - delete: True
+
+# wordpress_sites_{{ site }}_copy_theme:
+#     cmd.run:
+#         - name: rsync
+#
+# wordpress_sites_{{ site }}_copy_theme:
+#     archive.extracted:
+#         - name: "{{ wordpress_sites.sites_base_dir }}/{{ site }}/wordpress/wp-content/themes/{{ args['theme']['theme_name'] }}/"
+#         - source: "{{ args["theme"]["theme_source"] }}"
+#         - archive_format: tar
+#         - tar_options: zxvf
+#         - user: "{{ args['user'] }}"
+#         - group: "{{ args['group'] }}"
 {% endif %}
 
 # WordPress Config
